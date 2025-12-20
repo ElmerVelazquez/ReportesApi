@@ -10,6 +10,7 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
+      - vendor_data:/app/vendor4
     ports:
       - "9000:9000"
     environment:
@@ -23,6 +24,8 @@ services:
     depends_on:
       - mysql
       - redis
+    command: >
+      sh -c "php artisan migrate && php-fpm"
     networks:
       - laravel_network
 
@@ -69,6 +72,7 @@ services:
 volumes:
   mysql_data:
   redis_data:
+  vendor_data:
 
 networks:
   laravel_network:
