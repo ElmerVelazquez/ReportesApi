@@ -10,7 +10,7 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
-      - vendor_data:/app/vendor4
+      - vendor_data:/app/vendor
     ports:
       - "9000:9000"
     environment:
