@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('equipment', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('type_equipment_id')->constrained('equipment_type')->restrictOnDelete();
+            $table->foreignId('equipment_type_id')->constrained('equipment_types')->restrictOnDelete();
             $table->string('brand', 100);
             $table->string('model', 250)->nullable();
             $table->string('serial', 100)->unique();
-            $table->foreignId('equipment_status_id')->constrained('equipment_status')->restrictOnDelete();
+            $table->foreignId('equipment_status_id')->constrained('equipment_statuses')->restrictOnDelete();
             $table->text('comment')->nullable();
             $table->timestamps(); // created_at y updated_at
         });

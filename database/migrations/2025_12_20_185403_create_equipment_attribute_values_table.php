@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('equipment_attribute_values', function (Blueprint $table) {
             $table->id();
             $table->foreignId('equipment_id')->constrained('equipment')->cascadeOnDelete();
-            $table->foreignId('equipment_attribute_id')->constrained('equipment_attribute')->cascadeOnDelete();
+            $table->foreignId('equipment_attribute_id')->constrained('equipment_attributes')->cascadeOnDelete();
             $table->string('value', 255);
             $table->timestamps();
 
-            $table->unique(['equipment_id', 'equipment_attribute_id']);
+            $table->unique(['equipment_id', 'equipment_attribute_id'],'eq_attr_value_unique');
         });
     }
 
