@@ -13,8 +13,17 @@ return new class extends Migration
     {
         Schema::create('equipment_attribute_equipment_type', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('equipment_type_id')->constrained('equipment_types')->restrictOnDelete()->name('eq_attr_eq_type_eq_type_id_fk');
-            $table->foreignId('equipment_attribute_id')->constrained('equipment_attributes')->cascadeOnDelete()->name('eq_attr_eq_type_attr_id_fk');
+            //es necesario definir las claves foraneas manualmente para poder nombrar sus constraint y evitar conflictos por ser demasiado grandes
+            $table->unsignedBigInteger('equipment_type_id');
+            $table->unsignedBigInteger('equipment_attribute_id');
+            $table->foreign('equipment_type_id', 'eq_attr_eq_type_eq_type_id_fk')//se nombra la clave foranea
+                ->references('id')
+                ->on('equipment_types')
+                ->restrictOnDelete();
+            $table->foreign('equipment_attribute_id', 'eq_attr_eq_type_attr_id_fk')
+                ->references('id')
+                ->on('equipment_attributes')
+                ->cascadeOnDelete();
             $table->timestamps();
 
             // Evita duplicados: un mismo tipo no puede tener el mismo atributo dos veces
