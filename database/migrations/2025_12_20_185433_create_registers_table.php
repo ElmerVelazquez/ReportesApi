@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('registers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('type_register_id')->constrained('registers_types')->restrictOnDelete();
+            $table->foreignId('type_register_id')->constrained('register_types')->restrictOnDelete();
             $table->foreignId('company_id')->constrained('companies')->restrictOnDelete();
             $table->foreignId('equipment_id')->constrained('equipment')->restrictOnDelete();
             $table->foreignId('emisor_id')->constrained('users')->restrictOnUpdate();
