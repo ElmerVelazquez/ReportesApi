@@ -19,6 +19,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        //Auditable
+        Company::observe(AuditObserver::class);
+        User::observe(AuditObserver::class);
+        Equipment::observe(AuditObserver::class);
+        Letter::observe(AuditObserver::class);
+        Register::observe(AuditObserver::class);
+        RegisterType::observe(AuditObserver::class);
+        Role::observe(AuditObserver::class);
+        EquipmentStatus::observe(AuditObserver::class);
+        EquipmentType::observe(AuditObserver::class);
+        EquipmentAttribute::observe(AuditObserver::class);
+        EquipmentAttributeValue::observe(AuditObserver::class);
     }
 }
