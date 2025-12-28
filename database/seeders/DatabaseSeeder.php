@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Company;
-use App\Models\Role;
 use App\Models\RegisterType;
 use App\Models\EquipmentType;
 use App\Models\EquipmentStatus;
@@ -29,14 +28,13 @@ class DatabaseSeeder extends Seeder
             'password' => 'admin',
             ]
         );
-        Company::upsert([['name' => 'Concentra'],['name'=>'Innovix']],['name'],['name']);
-        Role::upsert(
+        Company::upsert(
             [
-                ['name' => 'Admin','description'=>'Usuario administrador'],
-                ['name'=>'User','description'=>'Usuario regular']
+                ['name' => 'Concentra'],
+                ['name'=>'Innovix']
             ],
             ['name'],
-            ['name','description']
+            ['name']
         );
         RegisterType::upsert(
             [

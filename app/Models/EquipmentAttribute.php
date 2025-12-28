@@ -12,9 +12,11 @@ class EquipmentAttribute extends Model
 
     protected $fillable = ['name'];
 
-    public function values()
+    protected $hidden = ['pivot'];
+
+    public function attributeValues()
     {
-        return $this->hasMany(EquipmentAttributeValue::class);
+        return $this->hasMany(EquipmentAttribute::class);
     }
     public function equipmentType()
     {
@@ -23,3 +25,4 @@ class EquipmentAttribute extends Model
     }
 
 }
+

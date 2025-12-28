@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,7 +19,7 @@ class Equipment extends Model
         'equipment_status_id',
         'comment',
     ];
-
+    protected $hidden = ['pivot'];
     public function type()
     {
         return $this->belongsTo(EquipmentType::class, 'equipment_type_id');
@@ -29,7 +30,7 @@ class Equipment extends Model
         return $this->belongsTo(EquipmentStatus::class, 'equipment_status_id');
     }
 
-    public function attributes()
+    public function attributeValues()
     {
         return $this->hasMany(EquipmentAttributeValue::class);
     }
