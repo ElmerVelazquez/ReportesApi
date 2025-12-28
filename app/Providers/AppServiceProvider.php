@@ -3,6 +3,18 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Observers\AuditObserver;
+use App\Models\User;
+use App\Models\Company;
+use App\Models\Equipment;
+use App\Models\Letter;
+use App\Models\EquipmentAttribute;
+use App\Models\EquipmentType;
+use App\Models\EquipmentAttributeValue;
+use App\Models\EquipmentStatus;
+use App\Models\Register;
+use App\Models\RegisterType;
+use App\Models\Role;
 
 class AppServiceProvider extends ServiceProvider
 {

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('lastname', 150)->nullable();
             $table->string('email', 150)->unique();
             $table->string('password');
+            $table->rememberToken();
             $table->timestamps(); // created_at y updated_at
 
             $table->softDeletes();
