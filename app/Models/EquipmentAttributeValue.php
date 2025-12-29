@@ -4,12 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Attributes\UseResource;
+use App\Http\Resources\ApiResource;
 
+
+#[UseResource(ApiResource::class)]
 class EquipmentAttributeValue extends Model
 {
     /** @use HasFactory<\Database\Factories\EquipmentAttributeValueFactory> */
     use HasFactory;
-    
+
     protected $fillable = [
         'equipment_id',
         'equipment_attribute_id',

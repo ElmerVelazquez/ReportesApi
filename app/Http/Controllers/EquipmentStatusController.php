@@ -13,15 +13,7 @@ class EquipmentStatusController
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return EquipmentStatus::all()->toResourceCollection();
     }
 
     /**
@@ -37,15 +29,7 @@ class EquipmentStatusController
      */
     public function show(EquipmentStatus $equipmentStatus)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(EquipmentStatus $equipmentStatus)
-    {
-        //
+        return $equipmentStatus->toResource();
     }
 
     /**
