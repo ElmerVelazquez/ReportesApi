@@ -13,23 +13,18 @@ class EquipmentTypeController
      */
     public function index()
     {
-        //
+        return  response()->json(EquipmentType::with('attributes')->get());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreEquipmentTypeRequest $request)
     {
-        //
+        EquipmentType::Find('1')->attributes()->sync([1,2,3]);
+       //$equipmentType->attributes()->attach($request->input('attributes'));
+       return EquipmentType::find('1')->attributes[0]->pivot;
     }
 
     /**
@@ -40,13 +35,6 @@ class EquipmentTypeController
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(EquipmentType $equipmentType)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

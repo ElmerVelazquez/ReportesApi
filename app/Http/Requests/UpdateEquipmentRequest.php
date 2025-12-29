@@ -11,7 +11,7 @@ class UpdateEquipmentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class UpdateEquipmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'equipment_type_id' => 'strict_integer|exists:equipment_types,id',
+            'brand' => 'string|max:255',
+            'model' =>'string|max:255',
+            'serial' => 'string|max:255|unique:equipment,serial',
+            'equipment_status_id' => 'integer|exists:equipment_statuses,id',
+            'comment' => 'string|max:255',
         ];
     }
 }

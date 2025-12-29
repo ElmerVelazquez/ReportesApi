@@ -5,7 +5,11 @@ namespace App\Models;
 use Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Attributes\UseResource;
+use App\Http\Resources\ApiResource;
 
+
+#[UseResource(ApiResource::class)]
 class Equipment extends Model
 {
     /** @use HasFactory<\Database\Factories\EquipmentFactory> */

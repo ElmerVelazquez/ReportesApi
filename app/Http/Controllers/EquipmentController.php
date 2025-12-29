@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Equipment;
 use App\Http\Requests\StoreEquipmentRequest;
 use App\Http\Requests\UpdateEquipmentRequest;
+use Illuminate\Support\Facades\DB;
 
 class EquipmentController
 {
@@ -13,39 +14,26 @@ class EquipmentController
      */
     public function index()
     {
-        //
+        //DB::enableQueryLog();
+        return Equipment::with('attributeValues.attribute,register')->get()->toResourceCollection();
+;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreEquipmentRequest $request)
     {
-        //
+        return  response()->json(Equipment::create($request->all()));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Equipment $equipment)
+    public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Equipment $equipment)
-    {
-        //
+        return Equipment::with('attributeValues.attribute,register')->findOrFail($id)->toResource();
     }
 
     /**
