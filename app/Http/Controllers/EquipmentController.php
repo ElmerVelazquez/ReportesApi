@@ -25,7 +25,7 @@ class EquipmentController
      */
     public function store(StoreEquipmentRequest $request)
     {
-        return  response()->json(Equipment::create($request->all()));
+        return  Equipment::create($request->all())->toResource();
     }
 
     /**

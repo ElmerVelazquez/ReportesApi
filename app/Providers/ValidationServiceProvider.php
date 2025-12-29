@@ -28,5 +28,9 @@ class ValidationServiceProvider extends ServiceProvider
             return is_bool($value);
         }, 'El campo :attribute debe ser un booleano (true/false).');
 
+        Validator::extend('strict_string', function ($attribute, $value, $parameters, $validator) {
+            return is_string($value);
+        }, 'El campo :attribute debe ser de tipo texto.');
+
     }
 }
