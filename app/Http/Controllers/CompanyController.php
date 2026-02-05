@@ -13,15 +13,7 @@ class CompanyController
      */
     public function index()
     {
-        return Company::all()->toResourceCollection();
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCompanyRequest $request)
-    {
-
+        return response()->json(Company::paginate(10));
     }
 
     /**
@@ -29,23 +21,6 @@ class CompanyController
      */
     public function show(Company $company)
     {
-        return $company->toResource();
-    }
-
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCompanyRequest $request, Company $company)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Company $company)
-    {
-        //
+        return response()->json($company);
     }
 }

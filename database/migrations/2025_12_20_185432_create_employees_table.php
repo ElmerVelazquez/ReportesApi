@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name', 150);
             $table->string('lastname', 150)->nullable();
             $table->string('job_title', 150);
+            $table->string('status', 100);
             $table->timestamps();
         });
     }

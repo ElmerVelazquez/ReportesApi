@@ -22,7 +22,11 @@ Route::resource('/equipment-status',EquipmentStatusController::class)->except(['
 
 Route::resource('/equipment-attribute',EquipmentAttributeController::class)->except(['create', 'edit']);
 
-Route::resource('/company',CompanyController::class)->except(['create', 'edit']);
+Route::resource('/company',CompanyController::class)->except(['create', 'edit','store','update','destroy']);
 
 Route::resource('/register',RegisterController::class)->except(['create', 'edit']);
+
+Route::resource('/audit',AuditController::class)->except(['create', 'edit','store','update','destroy']);
+
+Route::resource('/employee',EmployeeController::class)->except(['create', 'edit']);
 

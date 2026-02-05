@@ -13,15 +13,7 @@ class AuditController
      */
     public function index()
     {
-        return Audit::all()->toResourceCollection();
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreAuditRequest $request)
-    {
-        //
+        return response()->json(Audit::paginate(10));
     }
 
     /**
@@ -29,22 +21,6 @@ class AuditController
      */
     public function show(Audit $audit)
     {
-        return $audit->toResource();
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateAuditRequest $request, Audit $audit)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Audit $audit)
-    {
-        //
+        return response()->json($audit);
     }
 }

@@ -13,8 +13,13 @@ class Employee extends Model
     protected $fillable = [
         'name',
         'lastname',
-        'job_title'
+        'job_title',
+        'status',
     ];
+    protected $attributes = [
+        'status' => 'active',
+    ];
+
     public function registers()
     {
         return $this->hasMany(Register::class);
