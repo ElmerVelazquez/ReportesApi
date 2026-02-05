@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('type_register_id')->constrained('register_types')->restrictOnDelete();
             $table->foreignId('company_id')->constrained('companies')->restrictOnDelete();
             $table->foreignId('equipment_id')->constrained('equipment')->restrictOnDelete();
-            $table->foreignId('emisor_id')->constrained('users')->restrictOnUpdate();
-            $table->foreignId('receptor_id')->constrained('users')->restrictOnDelete();
+            $table->foreignId('emisor_id')->constrained('employees')->restrictOnUpdate();
+            $table->foreignId('receptor_id')->constrained('employees')->restrictOnDelete();
             $table->text('comment')->nullable();
             $table->timestamps();
         });

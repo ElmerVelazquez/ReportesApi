@@ -14,6 +14,7 @@ use App\Models\EquipmentAttributeValue;
 use App\Models\EquipmentStatus;
 use App\Models\Register;
 use App\Models\RegisterType;
+use App\Models\Employee;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -41,5 +42,6 @@ class AppServiceProvider extends ServiceProvider
         EquipmentType::observe(AuditObserver::class);
         EquipmentAttribute::observe(AuditObserver::class);
         EquipmentAttributeValue::observe(AuditObserver::class);
+        Employee::observe(AuditObserver::class);
     }
 }
