@@ -13,7 +13,7 @@ class EquipmentTypeController
      */
     public function index()
     {
-        return  response()->json(EquipmentType::with('attributes')->get());
+        return EquipmentType::with('attributes')->paginate(10)->toResourceCollection();
     }
 
 
@@ -22,9 +22,8 @@ class EquipmentTypeController
      */
     public function store(StoreEquipmentTypeRequest $request)
     {
-        EquipmentType::Find('1')->attributes()->sync([1,2,3]);
-       //$equipmentType->attributes()->attach($request->input('attributes'));
-       return EquipmentType::find('1')->attributes[0]->pivot;
+        $equipmentType = EquipmentType::create($request->all());
+        return $equipmentType->toresource()->response()->setStatusCode(201);
     }
 
     /**
@@ -32,7 +31,7 @@ class EquipmentTypeController
      */
     public function show(EquipmentType $equipmentType)
     {
-        //
+        return $equipmentType->attributes()->toResource();
     }
 
 
@@ -41,7 +40,8 @@ class EquipmentTypeController
      */
     public function update(UpdateEquipmentTypeRequest $request, EquipmentType $equipmentType)
     {
-        //
+        $equipmentType->update($request->all());
+        return $equipmentType->toResource();
     }
 
     /**
@@ -49,6 +49,8 @@ class EquipmentTypeController
      */
     public function destroy(EquipmentType $equipmentType)
     {
-        //
+        $equipmentType->delete();
+
+        return response()->json(null,204);
     }
 }

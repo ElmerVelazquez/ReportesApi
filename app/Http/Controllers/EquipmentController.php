@@ -6,7 +6,9 @@ use App\Models\Equipment;
 use App\Http\Requests\StoreEquipmentRequest;
 use App\Http\Requests\UpdateEquipmentRequest;
 use Illuminate\Support\Facades\DB;
+use App\Http\Resources\ApiResource;
 
+#[UseResource(ApiResource::class)]
 class EquipmentController
 {
     /**
@@ -15,8 +17,7 @@ class EquipmentController
     public function index()
     {
         //DB::enableQueryLog();
-        return Equipment::with('attributeValues.attribute,register')->get()->toResourceCollection();
-;
+        return Equipment::with('attributeValues.attribute,register')->paginate(10)->toResourceCollection();
     }
 
 
@@ -25,15 +26,15 @@ class EquipmentController
      */
     public function store(StoreEquipmentRequest $request)
     {
-        return  Equipment::create($request->all())->toResource();
+        return  Equipment::create($request->all())->toResource()->response()->setStatusCode(201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Equipment $equipment)
     {
-        return Equipment::with('attributeValues.attribute,register')->findOrFail($id)->toResource();
+        return Equipment::with('attributeValues.attribute,register')->findOrFail($equipment)->toResource();
     }
 
     /**
@@ -41,7 +42,8 @@ class EquipmentController
      */
     public function update(UpdateEquipmentRequest $request, Equipment $equipment)
     {
-        //
+        $equipment->update($request->all());
+        return $equipment->toResource();
     }
 
     /**
@@ -49,6 +51,7 @@ class EquipmentController
      */
     public function destroy(Equipment $equipment)
     {
-        //
+        $equipment->delete();
+        return response()->json(null,204);
     }
 }

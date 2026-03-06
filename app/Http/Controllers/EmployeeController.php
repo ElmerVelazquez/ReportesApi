@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
+use App\Http\Resources\ApiResource;
+use App\Http\Resources\ApiResourceCollection;
 
 class EmployeeController extends Controller
 {
@@ -13,7 +15,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return response()->json(Employee::paginate(10));
+        return Employee::all()->toResourceCollection();
     }
 
     /**
@@ -22,7 +24,7 @@ class EmployeeController extends Controller
     public function store(StoreEmployeeRequest $request)
     {
         $result = Employee::create($request->all());
-        return response()->json($result,201);
+        return $result->toResource()->response()->setStatusCode(201);
     }
 
     /**
@@ -30,7 +32,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        return response()->json($employee);
+        return $employee->toResource();
     }
 
     /**
@@ -39,7 +41,7 @@ class EmployeeController extends Controller
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
         $employee->update($request->all());
-        return response()->json($employee);
+        return $employee->toResource();
     }
 
     /**
@@ -48,10 +50,6 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         $employee->delete();
-
-        return response()->json([
-            'message' => 'Empleado eliminado correctamente'
-        ]);
-
+        return response()->json(null, 204);
     }
 }

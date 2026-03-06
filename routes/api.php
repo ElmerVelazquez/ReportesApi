@@ -24,7 +24,11 @@ Route::resource('/equipment-attribute',EquipmentAttributeController::class)->exc
 
 Route::resource('/company',CompanyController::class)->except(['create', 'edit','store','update','destroy']);
 
+Route::resource('/register-type',RegisterTypeController::class)->except(['create', 'edit','store','update','destroy']);
+
 Route::resource('/register',RegisterController::class)->except(['create', 'edit']);
+
+Route::resource('/letter',LetterController::class)->except(['create', 'edit']);
 
 Route::resource('/audit',AuditController::class)->except(['create', 'edit','store','update','destroy']);
 

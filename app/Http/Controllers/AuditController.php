@@ -13,7 +13,7 @@ class AuditController
      */
     public function index()
     {
-        return response()->json(Audit::paginate(10));
+        return Audit::paginate(10)->toResourceCollection();
     }
 
     /**
@@ -21,6 +21,6 @@ class AuditController
      */
     public function show(Audit $audit)
     {
-        return response()->json($audit);
+        return $audit->toResource();
     }
 }

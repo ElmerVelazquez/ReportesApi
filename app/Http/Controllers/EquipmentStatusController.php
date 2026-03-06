@@ -13,7 +13,7 @@ class EquipmentStatusController
      */
     public function index()
     {
-        return EquipmentStatus::all()->toResourceCollection();
+        return EquipmentStatus::paginate(10)->toResourceCollection();
     }
 
     /**
@@ -21,7 +21,7 @@ class EquipmentStatusController
      */
     public function store(StoreEquipmentStatusRequest $request)
     {
-        //
+        return EquipmentStatus::create($request->all())->toResource()->response()->setStatusCode(201);
     }
 
     /**
@@ -37,7 +37,8 @@ class EquipmentStatusController
      */
     public function update(UpdateEquipmentStatusRequest $request, EquipmentStatus $equipmentStatus)
     {
-        //
+        $equipmentStatus->update($request->all());
+        return $equipmentStatus->toResource();
     }
 
     /**
@@ -45,6 +46,7 @@ class EquipmentStatusController
      */
     public function destroy(EquipmentStatus $equipmentStatus)
     {
-        //
+        $equipmentStatus->delete();
+        return response()->json(null,204);
     }
 }

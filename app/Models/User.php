@@ -10,7 +10,6 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Attributes\UseResource;
 use App\Http\Resources\ApiResource;
 
-
 #[UseResource(ApiResource::class)]
 class User extends Authenticatable
 {

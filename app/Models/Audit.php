@@ -4,7 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Attributes\UseResource;
+use App\Http\Resources\ApiResource;
 
+#[UseResource(ApiResource::class)]
 class Audit extends Model
 {
     /** @use HasFactory<\Database\Factories\AuditFactory> */

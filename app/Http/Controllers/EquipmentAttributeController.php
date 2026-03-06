@@ -13,7 +13,7 @@ class EquipmentAttributeController
      */
     public function index()
     {
-        return response()->json(EquipmentAttribute::all());
+        return EquipmentAttribute::with('equipmentType')->paginate(10)->toResourceCollection();
     }
 
 
@@ -22,7 +22,7 @@ class EquipmentAttributeController
      */
     public function store(StoreEquipmentAttributeRequest $request)
     {
-        //
+        return EquipmentAttribute::create($request->all())->toResource()->response()->setStatusCode(201);
     }
 
     /**
@@ -30,7 +30,7 @@ class EquipmentAttributeController
      */
     public function show(EquipmentAttribute $equipmentAttribute)
     {
-        return $equipmentAttribute->toResource();
+        return $equipmentAttribute->with('attributeValues')->toResource();
     }
 
 
@@ -39,7 +39,8 @@ class EquipmentAttributeController
      */
     public function update(UpdateEquipmentAttributeRequest $request, EquipmentAttribute $equipmentAttribute)
     {
-        //
+        $equipmentAttribute->update($request->all());
+        return $equipmentAttribute->toResource();
     }
 
     /**
@@ -47,6 +48,7 @@ class EquipmentAttributeController
      */
     public function destroy(EquipmentAttribute $equipmentAttribute)
     {
-        //
+        $equipmentAttribute->delete();
+        return response()->json(null,204);
     }
 }

@@ -13,15 +13,7 @@ class RegisterController
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return Register::paginate(10)->toResourceCollection();
     }
 
     /**
@@ -29,7 +21,7 @@ class RegisterController
      */
     public function store(StoreRegisterRequest $request)
     {
-        //
+        return Register::create($request->all())->toResource()->response()->setStatusCode(201);
     }
 
     /**
@@ -37,23 +29,17 @@ class RegisterController
      */
     public function show(Register $register)
     {
-        //
+        return $register->toResource();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Register $register)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateRegisterRequest $request, Register $register)
     {
-        //
+        $register->update($request->all());
+        return $register->toResource();
     }
 
     /**
@@ -61,6 +47,7 @@ class RegisterController
      */
     public function destroy(Register $register)
     {
-        //
+        $register->delete();
+        return response()->json(null,204);
     }
 }

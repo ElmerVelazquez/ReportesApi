@@ -23,12 +23,12 @@ class StoreEquipmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-        'equipment_type_id' => 'required|strict_integer|exists:equipment_types,id',
-        'brand' => 'required|strict_string|max:255',
-        'model' =>'strict_string|max:255',
-        'serial' => 'required|strict_string|max:255|unique:equipment,serial',
-        'equipment_status_id' => 'required|strict_integer|exists:equipment_statuses,id',
-        'comment' => 'strict_string|max:255',
+            'equipment_type_id' => 'required|strict_integer|exists:equipment_types,id',
+            'brand' => 'required|strict_string|max:255',
+            'model' =>'strict_string|max:255',
+            'serial' => 'required|strict_string|max:255|unique:equipment,serial',
+            'equipment_status_id' => 'required|strict_integer|exists:equipment_statuses,id',
+            'comment' => 'strict_string|max:255',
         ];
     }
 }

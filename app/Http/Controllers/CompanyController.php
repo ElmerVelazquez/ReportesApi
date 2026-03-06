@@ -13,7 +13,7 @@ class CompanyController
      */
     public function index()
     {
-        return response()->json(Company::paginate(10));
+        return Company::paginate(10)->toResourceCollection();
     }
 
     /**
@@ -21,6 +21,6 @@ class CompanyController
      */
     public function show(Company $company)
     {
-        return response()->json($company);
+        return $company->toResource();
     }
 }

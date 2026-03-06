@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Attributes\UseResource;
 use App\Http\Resources\ApiResource;
 
-
 #[UseResource(ApiResource::class)]
 class EquipmentType extends Model
 {

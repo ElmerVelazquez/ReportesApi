@@ -13,15 +13,7 @@ class LetterController
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return Letter::paginate(10)->toResourceCollection();
     }
 
     /**
@@ -29,7 +21,7 @@ class LetterController
      */
     public function store(StoreLetterRequest $request)
     {
-        //
+        return Letter::create($request->all())->toResource()->response()->setStatusCode(201);
     }
 
     /**
@@ -37,23 +29,17 @@ class LetterController
      */
     public function show(Letter $letter)
     {
-        //
+        return $letter->toResource();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Letter $letter)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateLetterRequest $request, Letter $letter)
     {
-        //
+        $letter->update($request->all());
+        return $letter->toResource();
     }
 
     /**
@@ -61,6 +47,7 @@ class LetterController
      */
     public function destroy(Letter $letter)
     {
-        //
+        $letter->delete();
+        return response()->json(null,204);
     }
 }

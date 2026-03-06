@@ -7,11 +7,11 @@ use Illuminate\Foundation\Http\FormRequest;
 class StoreEquipmentStatusRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Determine if the user is authorized to make this request.s
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreEquipmentStatusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|strict_string|max:150',
+            'description' => 'strict_string|max:255',
         ];
     }
 }

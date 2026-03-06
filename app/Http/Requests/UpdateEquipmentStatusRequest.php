@@ -11,7 +11,7 @@ class UpdateEquipmentStatusRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class UpdateEquipmentStatusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'strict_string|max:150',
+            'description' => 'strict_string|max:255',
         ];
     }
 }
