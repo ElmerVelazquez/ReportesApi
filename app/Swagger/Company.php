@@ -9,7 +9,7 @@ class Company {
     #[OA\Get(
         path: '/api/company',
         operationId: 'getCompanies',
-        tags: ['Empresas'],
+        tags: ['Companies'],
         responses: [
             new OA\Response(
                 response: 200,
@@ -21,11 +21,11 @@ class Company {
     public function index() {}
 
     #[OA\Get(
-        path: '/api/company/{company}',
+        path: '/api/company/{company_id}',
         operationId: 'getCompanyById',
         tags: ['Empresas'],
         parameters: [
-            new OA\Parameter(name: 'company', in: 'path', required: true, schema: new OA\Schema(type: 'integer'))
+            new OA\Parameter(name: 'company_id', in: 'path', required: true, schema: new OA\Schema(type: 'integer'))
         ],
         responses: [
             new OA\Response(

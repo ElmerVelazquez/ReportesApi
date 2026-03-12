@@ -5,10 +5,74 @@
         "version": "0.1"
     },
     "paths": {
+        "/api/audits": {
+            "get": {
+                "tags": [
+                    "Audits"
+                ],
+                "summary": "Consultar el historial de auditoría del sistema",
+                "operationId": "getAudits",
+                "responses": {
+                    "200": {
+                        "description": "Lista de registros de auditoría",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Audit"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/audits/{id}": {
+            "get": {
+                "tags": [
+                    "Audits"
+                ],
+                "summary": "Ver el detalle de un cambio específico",
+                "operationId": "getAuditById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del registro de auditoría",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalle de la auditoría obtenido",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Audit"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Registro no encontrado"
+                    }
+                }
+            }
+        },
         "/api/company": {
             "get": {
                 "tags": [
-                    "Empresas"
+                    "Companies"
                 ],
                 "operationId": "getCompanies",
                 "responses": {
@@ -28,7 +92,7 @@
                 }
             }
         },
-        "/api/company/{company}": {
+        "/api/company/{company_id}": {
             "get": {
                 "tags": [
                     "Empresas"
@@ -36,7 +100,7 @@
                 "operationId": "getCompanyById",
                 "parameters": [
                     {
-                        "name": "company",
+                        "name": "company_id",
                         "in": "path",
                         "required": true,
                         "schema": {
@@ -60,6 +124,1418 @@
                     }
                 }
             }
+        },
+        "/api/employee": {
+            "get": {
+                "tags": [
+                    "Employees"
+                ],
+                "operationId": "getEmployees",
+                "responses": {
+                    "200": {
+                        "description": "Lista de empleados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Employee"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Employees"
+                ],
+                "operationId": "storeEmployee",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Employee"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Empleado creado"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                }
+            }
+        },
+        "/api/employee/{id}": {
+            "get": {
+                "tags": [
+                    "Employees"
+                ],
+                "operationId": "getEmployeeById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalle del empleado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Employees"
+                ],
+                "operationId": "updateEmployee",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Employee"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Empleado actualizado"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Employees"
+                ],
+                "operationId": "deleteEmployee",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Empleado eliminado"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            }
+        },
+        "/api/equipment": {
+            "get": {
+                "tags": [
+                    "Equipment"
+                ],
+                "operationId": "getEquipment",
+                "responses": {
+                    "200": {
+                        "description": "Lista de equipos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Equipment"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Equipment"
+                ],
+                "summary": "Registrar un nuevo equipo",
+                "operationId": "storeEquipment",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "equipment_type_id",
+                                    "brand",
+                                    "model",
+                                    "equipment_status_id"
+                                ],
+                                "properties": {
+                                    "equipment_type_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "brand": {
+                                        "type": "string",
+                                        "example": "HP"
+                                    },
+                                    "model": {
+                                        "type": "string",
+                                        "example": "ProBook 450 G8"
+                                    },
+                                    "serial": {
+                                        "type": "string",
+                                        "example": "CNU123456"
+                                    },
+                                    "equipment_status_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "comment": {
+                                        "type": "string",
+                                        "example": "Equipo nuevo de almacén"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Equipo creado con éxito",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Equipment"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Datos inválidos"
+                    }
+                }
+            }
+        },
+        "/api/equipment/{id}": {
+            "get": {
+                "tags": [
+                    "Equipment"
+                ],
+                "operationId": "getEquipmentById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalle del equipo",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Equipment"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Equipment"
+                ],
+                "summary": "Actualizar datos de un equipo existente",
+                "operationId": "updateEquipment",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del equipo a editar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "brand": {
+                                        "type": "string",
+                                        "example": "HP Updated"
+                                    },
+                                    "equipment_status_id": {
+                                        "type": "integer",
+                                        "example": 3
+                                    },
+                                    "comment": {
+                                        "type": "string",
+                                        "example": "Cambiado a estado en reparación"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Equipo actualizado correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Equipment"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Equipo no encontrado"
+                    },
+                    "422": {
+                        "description": "Error en la validación de datos"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Equipment"
+                ],
+                "summary": "Eliminar un equipo del sistema",
+                "operationId": "deleteEquipment",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del equipo a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Equipo eliminado correctamente (sin contenido)"
+                    },
+                    "404": {
+                        "description": "El ID proporcionado no existe"
+                    }
+                }
+            }
+        },
+        "/api/equipment-attributes": {
+            "get": {
+                "tags": [
+                    "Equipment Attributes"
+                ],
+                "operationId": "getEquipmentAttributes",
+                "responses": {
+                    "200": {
+                        "description": "Lista de atributos de equipo",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/EquipmentAttribute"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Equipment Attributes"
+                ],
+                "operationId": "storeEquipmentAttribute",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EquipmentAttribute"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Atributo creado"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                }
+            }
+        },
+        "/api/equipment-attributes/{id}": {
+            "get": {
+                "tags": [
+                    "Equipment Attributes"
+                ],
+                "operationId": "getEquipmentAttributeById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalle del atributo",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EquipmentAttribute"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Equipment Attributes"
+                ],
+                "operationId": "updateEquipmentAttribute",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EquipmentAttribute"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Atributo actualizado"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Equipment Attributes"
+                ],
+                "operationId": "deleteEquipmentAttribute",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Atributo eliminado"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            }
+        },
+        "/api/equipment-attribute-values": {
+            "get": {
+                "tags": [
+                    "Equipment Attribute Values"
+                ],
+                "operationId": "getAttributeValues",
+                "responses": {
+                    "200": {
+                        "description": "Lista de valores de atributos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/EquipmentAttributeValue"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Equipment Attribute Values"
+                ],
+                "operationId": "storeAttributeValue",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EquipmentAttributeValue"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Valor asignado correctamente"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                }
+            }
+        },
+        "/api/equipment-attribute-values/{id}": {
+            "get": {
+                "tags": [
+                    "Equipment Attribute Values"
+                ],
+                "operationId": "getAttributeValueById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalle del valor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/EquipmentAttributeValue"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Equipment Attribute Values"
+                ],
+                "operationId": "deleteAttributeValue",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Valor eliminado"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            }
+        },
+        "/api/equipment-attribute-values2/{id}": {
+            "put": {
+                "tags": [
+                    "Equipment Attribute Values"
+                ],
+                "operationId": "updateAttributeValue",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EquipmentAttributeValue"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Valor actualizado"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            }
+        },
+        "/api/equipment-statuses": {
+            "get": {
+                "tags": [
+                    "Equipment Status"
+                ],
+                "summary": "Obtener todos los estados posibles de los equipos",
+                "operationId": "getEquipmentStatuses",
+                "responses": {
+                    "200": {
+                        "description": "Lista de estados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/EquipmentStatus"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Equipment Status"
+                ],
+                "summary": "Crear un nuevo estado (ej: En Reparación)",
+                "operationId": "storeEquipmentStatus",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Dañado"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Equipo que requiere baja técnica"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Estado creado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EquipmentStatus"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/equipment-statuses/{id}": {
+            "get": {
+                "tags": [
+                    "Equipment Status"
+                ],
+                "operationId": "getEquipmentStatusById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalle del estado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EquipmentStatus"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Equipment Status"
+                ],
+                "operationId": "updateEquipmentStatus",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Estado actualizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EquipmentStatus"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Equipment Status"
+                ],
+                "operationId": "deleteEquipmentStatus",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Estado eliminado"
+                    }
+                }
+            }
+        },
+        "/api/equipment-type": {
+            "get": {
+                "tags": [
+                    "Equipment Types"
+                ],
+                "operationId": "getEquipmentTypes",
+                "responses": {
+                    "200": {
+                        "description": "Lista de tipos de equipo",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/EquipmentType"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Equipment Types"
+                ],
+                "operationId": "storeEquipmentType",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EquipmentType"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Tipo de equipo creado"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                }
+            }
+        },
+        "/api/equipment-type/{id}": {
+            "get": {
+                "tags": [
+                    "Equipment Types"
+                ],
+                "operationId": "getEquipmentTypeById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalle del tipo de equipo",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EquipmentType"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Equipment Types"
+                ],
+                "operationId": "updateEquipmentType",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EquipmentType"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Actualizado correctamente"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Equipment Types"
+                ],
+                "operationId": "deleteEquipmentType",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Eliminado correctamente"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            }
+        },
+        "/api/letters": {
+            "get": {
+                "tags": [
+                    "Letters"
+                ],
+                "summary": "Listar todas las cartas/actas (Paginado)",
+                "operationId": "getLetters",
+                "responses": {
+                    "200": {
+                        "description": "Colección paginada de cartas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Letter"
+                                            }
+                                        },
+                                        "meta": {
+                                            "type": "object"
+                                        },
+                                        "links": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Letters"
+                ],
+                "summary": "Crear una nueva carta o acta",
+                "operationId": "storeLetter",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "register_id",
+                                    "title"
+                                ],
+                                "properties": {
+                                    "register_id": {
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Carta creada con éxito",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Letter"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/letters/{id}": {
+            "get": {
+                "tags": [
+                    "Letters"
+                ],
+                "operationId": "getLetterById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalle de la carta",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Letter"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Letters"
+                ],
+                "operationId": "updateLetter",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Carta actualizada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Letter"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Letters"
+                ],
+                "operationId": "deleteLetter",
+                "responses": {
+                    "204": {
+                        "description": "Carta eliminada"
+                    }
+                }
+            }
+        },
+        "/api/registers": {
+            "get": {
+                "tags": [
+                    "Registers"
+                ],
+                "summary": "Listar todos los movimientos/registros",
+                "operationId": "getRegisters",
+                "responses": {
+                    "200": {
+                        "description": "Lista de registros",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Register"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Registers"
+                ],
+                "summary": "Crear un nuevo movimiento de equipo",
+                "operationId": "storeRegister",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "type_register_id",
+                                    "company_id",
+                                    "equipment_id",
+                                    "emisor_id",
+                                    "receptor_id"
+                                ],
+                                "properties": {
+                                    "type_register_id": {
+                                        "type": "integer"
+                                    },
+                                    "company_id": {
+                                        "type": "integer"
+                                    },
+                                    "equipment_id": {
+                                        "type": "integer"
+                                    },
+                                    "emisor_id": {
+                                        "type": "integer"
+                                    },
+                                    "receptor_id": {
+                                        "type": "integer"
+                                    },
+                                    "comment": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Movimiento registrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Register"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/registers/{id}": {
+            "get": {
+                "tags": [
+                    "Registers"
+                ],
+                "operationId": "getRegisterById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalle del registro",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Register"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Registers"
+                ],
+                "summary": "Eliminar un registro (usar con precaución)",
+                "operationId": "deleteRegister",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Eliminado correctamente"
+                    }
+                }
+            }
+        },
+        "/api/register-types": {
+            "get": {
+                "tags": [
+                    "Register Types"
+                ],
+                "summary": "Listar todos los tipos de registros",
+                "operationId": "getRegisterTypes",
+                "responses": {
+                    "200": {
+                        "description": "Lista de tipos de registro",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/RegisterType"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Register Types"
+                ],
+                "summary": "Crear un nuevo tipo de registro",
+                "operationId": "storeRegisterType",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Mantenimiento Preventivo"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Tipo de registro creado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RegisterType"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/register-types/{id}": {
+            "get": {
+                "tags": [
+                    "Register Types"
+                ],
+                "operationId": "getRegisterTypeById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalle del tipo de registro",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RegisterType"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Register Types"
+                ],
+                "operationId": "updateRegisterType",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Nombre Actualizado"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Actualizado correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RegisterType"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Register Types"
+                ],
+                "operationId": "deleteRegisterType",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Eliminado correctamente"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -79,13 +1555,461 @@
                     }
                 },
                 "type": "object"
+            },
+            "Employee": {
+                "required": [
+                    "name",
+                    "lastname",
+                    "job_title"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Juan"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "example": "Pérez"
+                    },
+                    "job_title": {
+                        "type": "string",
+                        "example": "Software Engineer"
+                    },
+                    "status": {
+                        "type": "string",
+                        "default": "active",
+                        "enum": [
+                            "active",
+                            "inactive"
+                        ]
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "EquipmentType": {
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Laptop"
+                    },
+                    "attributes": {
+                        "description": "Lista de atributos asociados a este tipo de equipo",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/EquipmentAttribute"
+                        }
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "EquipmentAttribute": {
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "description": "Nombre del atributo (ej: Marca, Modelo, Color)",
+                        "type": "string",
+                        "example": "Color"
+                    },
+                    "attribute_values": {
+                        "description": "Valores asociados a este atributo",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/EquipmentAttributeValue"
+                        },
+                        "example": [
+                            "Rojo",
+                            "Azul",
+                            "Verde"
+                        ]
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "EquipmentAttributeValue": {
+                "required": [
+                    "equipment_id",
+                    "equipment_attribute_id",
+                    "value"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "equipment_id": {
+                        "description": "ID del equipo al que pertenece",
+                        "type": "integer",
+                        "example": 10
+                    },
+                    "equipment_attribute_id": {
+                        "description": "ID del atributo (ej: Color, RAM)",
+                        "type": "integer",
+                        "example": 5
+                    },
+                    "value": {
+                        "description": "Valor asignado",
+                        "type": "string",
+                        "example": "16GB"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "Equipment": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": 1
+                            },
+                            "equipment_type_id": {
+                                "type": "integer",
+                                "example": 1
+                            },
+                            "brand": {
+                                "type": "string",
+                                "example": "Dell"
+                            },
+                            "model": {
+                                "type": "string",
+                                "example": "Latitude 5420"
+                            },
+                            "serial": {
+                                "type": "string",
+                                "example": "SN-123456789"
+                            },
+                            "equipment_status_id": {
+                                "type": "integer",
+                                "example": 2
+                            },
+                            "comment": {
+                                "type": "string",
+                                "nullable": true
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updated_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "EquipmentStatus": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": 1
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Disponible"
+                            },
+                            "description": {
+                                "type": "string",
+                                "example": "El equipo está listo para ser asignado"
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updated_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "Audit": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": 1
+                            },
+                            "user_id": {
+                                "type": "integer",
+                                "example": 5
+                            },
+                            "action": {
+                                "description": "Acción realizada (created, updated, deleted)",
+                                "type": "string",
+                                "example": "updated"
+                            },
+                            "auditable_type": {
+                                "type": "string",
+                                "example": "App\\Models\\Equipment"
+                            },
+                            "auditable_id": {
+                                "type": "integer",
+                                "example": 12
+                            },
+                            "old_values": {
+                                "type": "object",
+                                "example": {
+                                    "status": "disponible",
+                                    "comment": "Ninguno"
+                                },
+                                "nullable": true
+                            },
+                            "new_values": {
+                                "type": "object",
+                                "example": {
+                                    "status": "reparación",
+                                    "comment": "Pantalla rota"
+                                },
+                                "nullable": true
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updated_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "RegisterType": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": 1
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Asignación"
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updated_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "Register": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": 1
+                            },
+                            "type_register_id": {
+                                "type": "integer",
+                                "example": 2
+                            },
+                            "company_id": {
+                                "type": "integer",
+                                "example": 1
+                            },
+                            "equipment_id": {
+                                "type": "integer",
+                                "example": 10
+                            },
+                            "emisor_id": {
+                                "description": "ID del empleado que entrega",
+                                "type": "integer",
+                                "example": 5
+                            },
+                            "receptor_id": {
+                                "description": "ID del empleado que recibe",
+                                "type": "integer",
+                                "example": 8
+                            },
+                            "comment": {
+                                "type": "string",
+                                "example": "Entrega de equipo por renovación",
+                                "nullable": true
+                            },
+                            "type": {
+                                "$ref": "#/components/schemas/RegisterType"
+                            },
+                            "equipment": {
+                                "$ref": "#/components/schemas/Equipment"
+                            },
+                            "emisor": {
+                                "$ref": "#/components/schemas/Employee"
+                            },
+                            "receptor": {
+                                "$ref": "#/components/schemas/Employee"
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updated_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "Letter": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": 1
+                            },
+                            "register_id": {
+                                "type": "integer",
+                                "example": 101
+                            },
+                            "title": {
+                                "type": "string",
+                                "example": "Acta de Entrega de Equipo"
+                            },
+                            "content": {
+                                "type": "string",
+                                "example": "Por la presente se hace entrega..."
+                            },
+                            "file_path": {
+                                "type": "string",
+                                "example": "storage/letters/acta_001.pdf",
+                                "nullable": true
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updated_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
             }
         }
     },
     "tags": [
         {
+            "name": "Audits",
+            "description": "Audits"
+        },
+        {
+            "name": "Companies",
+            "description": "Companies"
+        },
+        {
             "name": "Empresas",
             "description": "Empresas"
+        },
+        {
+            "name": "Employees",
+            "description": "Employees"
+        },
+        {
+            "name": "Equipment",
+            "description": "Equipment"
+        },
+        {
+            "name": "Equipment Attributes",
+            "description": "Equipment Attributes"
+        },
+        {
+            "name": "Equipment Attribute Values",
+            "description": "Equipment Attribute Values"
+        },
+        {
+            "name": "Equipment Status",
+            "description": "Equipment Status"
+        },
+        {
+            "name": "Equipment Types",
+            "description": "Equipment Types"
+        },
+        {
+            "name": "Letters",
+            "description": "Letters"
+        },
+        {
+            "name": "Registers",
+            "description": "Registers"
+        },
+        {
+            "name": "Register Types",
+            "description": "Register Types"
         }
     ]
 }

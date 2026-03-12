@@ -19,7 +19,7 @@ class EquipmentAttribute extends Model
 
     public function attributeValues()
     {
-        return $this->hasMany(EquipmentAttribute::class);
+        return $this->hasMany(EquipmentAttributeValue::class);
     }
     public function equipmentType()
     {
