@@ -31,7 +31,7 @@ class EquipmentTypeController
      */
     public function show(EquipmentType $equipmentType)
     {
-        return $equipmentType->attributes()->toResource();
+        return $equipmentType->load('attributes')->toResource();
     }
 
 

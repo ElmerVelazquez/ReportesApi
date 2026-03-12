@@ -30,7 +30,7 @@ class EquipmentAttributeController
      */
     public function show(EquipmentAttribute $equipmentAttribute)
     {
-        return $equipmentAttribute->with('attributeValues')->toResource();
+        return $equipmentAttribute->load('attributeValues')->toResource();
     }
 
 

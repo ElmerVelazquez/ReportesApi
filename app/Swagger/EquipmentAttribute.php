@@ -7,7 +7,7 @@ use OpenApi\Attributes as OA;
 class EquipmentAttribute {
 
 #[OA\Get(
-    path: '/api/equipment-attributes',
+    path: '/api/equipment-attribute',
     operationId: 'getEquipmentAttributes',
     tags: ['Equipment Attributes'],
     responses: [
@@ -24,7 +24,7 @@ class EquipmentAttribute {
 public function index() {}
 
 #[OA\Get(
-    path: '/api/equipment-attributes/{id}',
+    path: '/api/equipment-attribute/{id}',
     operationId: 'getEquipmentAttributeById',
     tags: ['Equipment Attributes'],
     parameters: [
@@ -42,7 +42,7 @@ public function index() {}
 public function show() {}
 
 #[OA\Post(
-    path: '/api/equipment-attributes',
+    path: '/api/equipment-attribute',
     operationId: 'storeEquipmentAttribute',
     tags: ['Equipment Attributes'],
     requestBody: new OA\RequestBody(
@@ -57,7 +57,7 @@ public function show() {}
 public function store() {}
 
 #[OA\Put(
-    path: '/api/equipment-attributes/{id}',
+    path: '/api/equipment-attribute/{id}',
     operationId: 'updateEquipmentAttribute',
     tags: ['Equipment Attributes'],
     parameters: [
@@ -75,7 +75,7 @@ public function store() {}
 public function update() {}
 
 #[OA\Delete(
-    path: '/api/equipment-attributes/{id}',
+    path: '/api/equipment-attribute/{id}',
     operationId: 'deleteEquipmentAttribute',
     tags: ['Equipment Attributes'],
     parameters: [

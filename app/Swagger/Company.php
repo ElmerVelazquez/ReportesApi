@@ -23,7 +23,7 @@ class Company {
     #[OA\Get(
         path: '/api/company/{company_id}',
         operationId: 'getCompanyById',
-        tags: ['Empresas'],
+        tags: ['Companies'],
         parameters: [
             new OA\Parameter(name: 'company_id', in: 'path', required: true, schema: new OA\Schema(type: 'integer'))
         ],

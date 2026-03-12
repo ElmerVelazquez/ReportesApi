@@ -5,7 +5,7 @@
         "version": "0.1"
     },
     "paths": {
-        "/api/audits": {
+        "/api/audit": {
             "get": {
                 "tags": [
                     "Audits"
@@ -34,7 +34,7 @@
                 }
             }
         },
-        "/api/audits/{id}": {
+        "/api/audit/{id}": {
             "get": {
                 "tags": [
                     "Audits"
@@ -95,7 +95,7 @@
         "/api/company/{company_id}": {
             "get": {
                 "tags": [
-                    "Empresas"
+                    "Companies"
                 ],
                 "operationId": "getCompanyById",
                 "parameters": [
@@ -471,7 +471,7 @@
                 }
             }
         },
-        "/api/equipment-attributes": {
+        "/api/equipment-attribute": {
             "get": {
                 "tags": [
                     "Equipment Attributes"
@@ -518,7 +518,7 @@
                 }
             }
         },
-        "/api/equipment-attributes/{id}": {
+        "/api/equipment-attribute/{id}": {
             "get": {
                 "tags": [
                     "Equipment Attributes"
@@ -609,158 +609,13 @@
                 }
             }
         },
-        "/api/equipment-attribute-values": {
-            "get": {
-                "tags": [
-                    "Equipment Attribute Values"
-                ],
-                "operationId": "getAttributeValues",
-                "responses": {
-                    "200": {
-                        "description": "Lista de valores de atributos",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/EquipmentAttributeValue"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Equipment Attribute Values"
-                ],
-                "operationId": "storeAttributeValue",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/EquipmentAttributeValue"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Valor asignado correctamente"
-                    },
-                    "422": {
-                        "description": "Error de validación"
-                    }
-                }
-            }
-        },
-        "/api/equipment-attribute-values/{id}": {
-            "get": {
-                "tags": [
-                    "Equipment Attribute Values"
-                ],
-                "operationId": "getAttributeValueById",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Detalle del valor",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "data": {
-                                            "$ref": "#/components/schemas/EquipmentAttributeValue"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "No encontrado"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Equipment Attribute Values"
-                ],
-                "operationId": "deleteAttributeValue",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "204": {
-                        "description": "Valor eliminado"
-                    },
-                    "404": {
-                        "description": "No encontrado"
-                    }
-                }
-            }
-        },
-        "/api/equipment-attribute-values2/{id}": {
-            "put": {
-                "tags": [
-                    "Equipment Attribute Values"
-                ],
-                "operationId": "updateAttributeValue",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/EquipmentAttributeValue"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Valor actualizado"
-                    },
-                    "404": {
-                        "description": "No encontrado"
-                    }
-                }
-            }
-        },
-        "/api/equipment-statuses": {
+        "/api/equipment-status": {
             "get": {
                 "tags": [
                     "Equipment Status"
                 ],
                 "summary": "Obtener todos los estados posibles de los equipos",
-                "operationId": "getEquipmentStatuses",
+                "operationId": "getEquipmentStatus",
                 "responses": {
                     "200": {
                         "description": "Lista de estados",
@@ -825,7 +680,7 @@
                 }
             }
         },
-        "/api/equipment-statuses/{id}": {
+        "/api/equipment-status/{id}": {
             "get": {
                 "tags": [
                     "Equipment Status"
@@ -1399,44 +1254,6 @@
                         }
                     }
                 }
-            },
-            "post": {
-                "tags": [
-                    "Register Types"
-                ],
-                "summary": "Crear un nuevo tipo de registro",
-                "operationId": "storeRegisterType",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "name"
-                                ],
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "example": "Mantenimiento Preventivo"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Tipo de registro creado",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/RegisterType"
-                                }
-                            }
-                        }
-                    }
-                }
             }
         },
         "/api/register-types/{id}": {
@@ -1468,71 +1285,6 @@
                     },
                     "404": {
                         "description": "No encontrado"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "Register Types"
-                ],
-                "operationId": "updateRegisterType",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "example": "Nombre Actualizado"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Actualizado correctamente",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/RegisterType"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Register Types"
-                ],
-                "operationId": "deleteRegisterType",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "204": {
-                        "description": "Eliminado correctamente"
                     }
                 }
             }
@@ -1972,10 +1724,6 @@
             "description": "Companies"
         },
         {
-            "name": "Empresas",
-            "description": "Empresas"
-        },
-        {
             "name": "Employees",
             "description": "Employees"
         },
@@ -1986,10 +1734,6 @@
         {
             "name": "Equipment Attributes",
             "description": "Equipment Attributes"
-        },
-        {
-            "name": "Equipment Attribute Values",
-            "description": "Equipment Attribute Values"
         },
         {
             "name": "Equipment Status",

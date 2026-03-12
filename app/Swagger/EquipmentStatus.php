@@ -6,8 +6,8 @@ use OpenApi\Attributes as OA;
 class EquipmentStatus
 {
     #[OA\Get(
-            path: '/api/equipment-statuses',
-            operationId: 'getEquipmentStatuses',
+            path: '/api/equipment-status',
+            operationId: 'getEquipmentStatus',
             tags: ['Equipment Status'],
             summary: 'Obtener todos los estados posibles de los equipos',
             responses: [
@@ -29,7 +29,7 @@ class EquipmentStatus
     public function index() {}
 
     #[OA\Post(
-        path: '/api/equipment-statuses',
+        path: '/api/equipment-status',
         operationId: 'storeEquipmentStatus',
         tags: ['Equipment Status'],
         summary: 'Crear un nuevo estado (ej: En Reparación)',
@@ -54,7 +54,7 @@ class EquipmentStatus
     public function store() {}
 
     #[OA\Get(
-        path: '/api/equipment-statuses/{id}',
+        path: '/api/equipment-status/{id}',
         operationId: 'getEquipmentStatusById',
         tags: ['Equipment Status'],
         parameters: [
@@ -72,7 +72,7 @@ class EquipmentStatus
     public function show() {}
 
     #[OA\Put(
-        path: '/api/equipment-statuses/{id}',
+        path: '/api/equipment-status/{id}',
         operationId: 'updateEquipmentStatus',
         tags: ['Equipment Status'],
         parameters: [
@@ -98,7 +98,7 @@ class EquipmentStatus
     public function update() {}
 
     #[OA\Delete(
-        path: '/api/equipment-statuses/{id}',
+        path: '/api/equipment-status/{id}',
         operationId: 'deleteEquipmentStatus',
         tags: ['Equipment Status'],
         parameters: [

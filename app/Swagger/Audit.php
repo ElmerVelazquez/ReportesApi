@@ -6,7 +6,7 @@ use OpenApi\Attributes as OA;
 class Audit
 {
     #[OA\Get(
-        path: '/api/audits',
+        path: '/api/audit',
         operationId: 'getAudits',
         tags: ['Audits'],
         summary: 'Consultar el historial de auditoría del sistema',
@@ -29,7 +29,7 @@ class Audit
     public function index() {}
 
     #[OA\Get(
-        path: '/api/audits/{id}',
+        path: '/api/audit/{id}',
         operationId: 'getAuditById',
         tags: ['Audits'],
         summary: 'Ver el detalle de un cambio específico',
