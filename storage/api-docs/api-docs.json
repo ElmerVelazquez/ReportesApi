@@ -1,16 +1,62 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "My First API",
+        "title": "ReportesApi",
         "version": "0.1"
     },
     "paths": {
-        "/api/data.json": {
+        "/api/company": {
             "get": {
-                "operationId": "getData",
+                "tags": [
+                    "Empresas"
+                ],
+                "operationId": "getCompanies",
                 "responses": {
                     "200": {
-                        "description": "The data"
+                        "description": "Lista de empresas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Company"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/company/{company}": {
+            "get": {
+                "tags": [
+                    "Empresas"
+                ],
+                "operationId": "getCompanyById",
+                "parameters": [
+                    {
+                        "name": "company",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Datos de la empresa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Company"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No encontrado"
                     }
                 }
             }
@@ -20,7 +66,6 @@
         "schemas": {
             "Company": {
                 "required": [
-                    "id",
                     "name"
                 ],
                 "properties": {
@@ -36,5 +81,11 @@
                 "type": "object"
             }
         }
-    }
+    },
+    "tags": [
+        {
+            "name": "Empresas",
+            "description": "Empresas"
+        }
+    ]
 }
