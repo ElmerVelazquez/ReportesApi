@@ -23,8 +23,8 @@ class UpdateEquipmentRequest extends FormRequest
     {
         return [
             'equipment_type_id' => 'strict_integer|exists:equipment_types,id',
-            'brand' => 'strict_string|max:255',
-            'model' =>'strict_string|max:255',
+            'equipment_brand_id' => 'required|strict_integer|exists:equipment_brands,id',
+            'equipment_model_id' =>'required|strict_integer|exists:equipment_models,id',
             'serial' => 'strict_string|max:255|unique:equipment,serial',
             'equipment_status_id' => 'strict_integer|exists:equipment_statuses,id',
             'comment' => 'strict_string|max:255',

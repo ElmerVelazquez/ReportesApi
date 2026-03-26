@@ -609,6 +609,282 @@
                 }
             }
         },
+        "/api/equipment-brand": {
+            "get": {
+                "tags": [
+                    "Equipment Brands"
+                ],
+                "operationId": "getEquipmentBrand",
+                "responses": {
+                    "200": {
+                        "description": "Lista de marcas de equipos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/EquipmentBrand"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Equipment Brands"
+                ],
+                "operationId": "storeEquipmentBrand",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EquipmentBrand"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Marca de equipo creada"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                }
+            }
+        },
+        "/api/equipment-brand/{id}": {
+            "get": {
+                "tags": [
+                    "Equipment Brands"
+                ],
+                "operationId": "getEquipmentBrandById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalle de marca de equipos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EquipmentBrand"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Equipment Brands"
+                ],
+                "operationId": "updateEquipmentBrand",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EquipmentBrand"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Actualizado correctamente"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Equipment Brands"
+                ],
+                "operationId": "deleteEquipmentBrand",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Eliminado correctamente"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            }
+        },
+        "/api/equipment-model": {
+            "get": {
+                "tags": [
+                    "Equipment Models"
+                ],
+                "operationId": "getEquipmentModel",
+                "responses": {
+                    "200": {
+                        "description": "Lista de modelos de equipos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Equipment"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Equipment Models"
+                ],
+                "operationId": "storeEquipmentModel",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EquipmentModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Modelo de equipo creado"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                }
+            }
+        },
+        "/api/equipment-model/{id}": {
+            "get": {
+                "tags": [
+                    "Equipment Models"
+                ],
+                "operationId": "getEquipmentModelById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalle de modelo de equipo",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EquipmentModel"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Equipment Models"
+                ],
+                "operationId": "updateEquipmentmodel",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EquipmentModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Actualizado correctamente"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Equipment Models"
+                ],
+                "operationId": "deleteEquipmentmodel",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Eliminado correctamente"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    }
+                }
+            }
+        },
         "/api/equipment-status": {
             "get": {
                 "tags": [
@@ -1711,6 +1987,46 @@
                     }
                 },
                 "type": "object"
+            },
+            "EquipmentBrand": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": 1
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Acme"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "EquipmentModel": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": 1
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Acme"
+                            },
+                            "equipment_brand_id": {
+                                "type": "integer",
+                                "example": 1
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
             }
         }
     },
@@ -1734,6 +2050,14 @@
         {
             "name": "Equipment Attributes",
             "description": "Equipment Attributes"
+        },
+        {
+            "name": "Equipment Brands",
+            "description": "Equipment Brands"
+        },
+        {
+            "name": "Equipment Models",
+            "description": "Equipment Models"
         },
         {
             "name": "Equipment Status",

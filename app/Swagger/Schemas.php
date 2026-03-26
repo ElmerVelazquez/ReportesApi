@@ -136,15 +136,15 @@ class Schemas {
                     new OA\Property(property: 'auditable_type', type: 'string', example: 'App\\Models\\Equipment'),
                     new OA\Property(property: 'auditable_id', type: 'integer', example: 12),
                     new OA\Property(
-                        property: 'old_values', 
-                        type: 'object', 
-                        nullable: true, 
+                        property: 'old_values',
+                        type: 'object',
+                        nullable: true,
                         example: ['status' => 'disponible', 'comment' => 'Ninguno']
                     ),
                     new OA\Property(
-                        property: 'new_values', 
-                        type: 'object', 
-                        nullable: true, 
+                        property: 'new_values',
+                        type: 'object',
+                        nullable: true,
                         example: ['status' => 'reparación', 'comment' => 'Pantalla rota']
                     ),
                     new OA\Property(property: 'created_at', type: 'string', format: 'date-time'),
@@ -198,7 +198,7 @@ class Schemas {
         ]
     )]
     public $Register;
-    
+
     #[OA\Schema(
         schema: 'Letter',
         properties: [
@@ -218,4 +218,36 @@ class Schemas {
         ]
     )]
     public $Letter;
+
+    #[OA\Schema(
+        schema: 'EquipmentBrand',
+        properties: [
+            new OA\Property(
+                property: 'data',
+                type: 'object',
+                properties: [
+                    new OA\Property(property: 'id', type: 'integer', example: 1),
+                    new OA\Property(property: 'name', type: 'string', example: 'Acme'),
+                ]
+            )
+        ]
+    )]
+    public $Equipment_Brand;
+
+
+    #[OA\Schema(
+        schema: 'EquipmentModel',
+        properties: [
+            new OA\Property(
+                property: 'data',
+                type: 'object',
+                properties: [
+                    new OA\Property(property: 'id', type: 'integer', example: 1),
+                    new OA\Property(property: 'name', type: 'string', example: 'Acme'),
+                    new OA\Property(property: 'equipment_brand_id', type: 'integer', example: 1),
+                ]
+            )
+        ]
+    )]
+    public $Equipment_Model;
 }

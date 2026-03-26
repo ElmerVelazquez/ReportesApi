@@ -8,6 +8,8 @@ use App\Models\RegisterType;
 use App\Models\EquipmentType;
 use App\Models\EquipmentStatus;
 use App\Models\EquipmentAttribute;
+use App\Models\EquipmentBrand;
+use App\Models\EquipmentModel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -76,5 +78,22 @@ class DatabaseSeeder extends Seeder
             ['name'],
             ['name']
         );
+        EquipmentBrand::upsert(
+            [
+                ['name' => 'Dell'],
+                ['name' => 'HP'],
+            ],
+            ['name'],
+            ['name']
+        );
+        EquipmentModel::upsert(
+            [
+                ['name' => 'Latitude','equipment_brand_id'=>'1'],
+                ['name' => 'Elite', 'equipment_brand_id'=>'2'],
+            ],
+            ['name','equipment_brand_id'],
+            ['name','equipment_brand_id']
+        );
+
     }
 }

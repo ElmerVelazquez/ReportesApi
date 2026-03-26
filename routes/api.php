@@ -11,26 +11,17 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/',[TestController::class, 'index']);
 Route::get('/login',[TestController::class, 'login']);
-
 Route::resource('/user',UserController::class)->except(['create', 'edit']);
-
 Route::resource('/equipment',EquipmentController::class)->except(['create', 'edit']);
-
 Route::resource('/equipment-type',EquipmentTypeController::class)->except(['create', 'edit']);
-
 Route::resource('/equipment-status',EquipmentStatusController::class)->except(['create', 'edit']);
-
 Route::resource('/equipment-attribute',EquipmentAttributeController::class)->except(['create', 'edit']);
-
 Route::resource('/company',CompanyController::class)->except(['create', 'edit','store','update','destroy']);
-
 Route::resource('/register-type',RegisterTypeController::class)->except(['create', 'edit','store','update','destroy']);
-
 Route::resource('/register',RegisterController::class)->except(['create', 'edit']);
-
 Route::resource('/letter',LetterController::class)->except(['create', 'edit']);
-
 Route::resource('/audit',AuditController::class)->except(['create', 'edit','store','update','destroy']);
-
 Route::resource('/employee',EmployeeController::class)->except(['create', 'edit']);
+Route::resource('/equipment-brand',EquipmentBrandController::class)->except(['create', 'edit']);
+Route::resource('/equipment-model',EquipmentModelController::class)->except(['create', 'edit']);
 
