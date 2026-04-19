@@ -11,7 +11,7 @@ class UpdateEquipmentModelRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,7 @@ class UpdateEquipmentModelRequest extends FormRequest
     {
         return [
             'name' => 'required|strict_string|max:100',
-            'equipment_brand_id' => 'required|strict_integer|exists:equipment_brands,id'
+            'equipment_brand_id' => 'strict_integer|exists:equipment_brands,id'
         ];
     }
 }
