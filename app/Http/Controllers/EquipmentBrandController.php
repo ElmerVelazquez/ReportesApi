@@ -13,7 +13,7 @@ class EquipmentBrandController extends Controller
      */
     public function index()
     {
-        return EquipmentBrand::paginate(10)->toResourceCollection();
+        return EquipmentBrand::all()->toResourceCollection();
 
     }
 

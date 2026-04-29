@@ -13,7 +13,7 @@ class EquipmentStatusController
      */
     public function index()
     {
-        return EquipmentStatus::paginate(10)->toResourceCollection();
+        return EquipmentStatus::all()->toResourceCollection();
     }
 
     /**

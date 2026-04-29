@@ -13,7 +13,7 @@ class EquipmentModelController extends Controller
      */
     public function index()
     {
-        return EquipmentModel::with('brand')->paginate(10)->toResourceCollection();
+        return EquipmentModel::with('brand')->get()->toResourceCollection();
     }
 
     /**

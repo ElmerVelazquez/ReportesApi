@@ -13,7 +13,7 @@ class RegisterTypeController
      */
     public function index()
     {
-        return RegisterType::paginate(10)->toResourceCollection();
+        return RegisterType::all()->toResourceCollection();
     }
 
     /**

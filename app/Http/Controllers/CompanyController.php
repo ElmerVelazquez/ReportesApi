@@ -9,7 +9,7 @@ class CompanyController
 
     public function index()
     {
-        return Company::paginate(10)->toResourceCollection();
+        return Company::get()->toResourceCollection();
     }
 
     public function show(Company $company)

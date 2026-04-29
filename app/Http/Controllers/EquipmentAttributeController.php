@@ -13,7 +13,7 @@ class EquipmentAttributeController
      */
     public function index()
     {
-        return EquipmentAttribute::with('equipmentType')->paginate(10)->toResourceCollection();
+        return EquipmentAttribute::with('equipmentType')->get()->toResourceCollection();
     }
 
 

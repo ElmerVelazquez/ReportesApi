@@ -17,7 +17,7 @@ class EquipmentController
     public function index()
     {
         //DB::enableQueryLog();
-        return Equipment::with('attributeValues.attribute,register')->paginate(10)->toResourceCollection();
+        return Equipment::with('attributeValues.attribute','registers','type','brand','model','status')->get()->toResourceCollection();
     }
 
 
@@ -34,7 +34,7 @@ class EquipmentController
      */
     public function show(Equipment $equipment)
     {
-        return Equipment::with('attributeValues.attribute,register')->findOrFail($equipment)->toResource();
+        return Equipment::with('attributeValues.attribute','registers','type','brand','model','status')->findOrFail($equipment)->toResource();
     }
 
     /**

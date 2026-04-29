@@ -13,7 +13,7 @@ class EquipmentAttributeValueController
      */
     public function index()
     {
-        return EquipmentAttributeValue::paginate(10)->toResourceCollection();
+        return EquipmentAttributeValue::all()->toResourceCollection();
     }
 
     /**

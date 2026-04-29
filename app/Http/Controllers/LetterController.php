@@ -13,7 +13,7 @@ class LetterController
      */
     public function index()
     {
-        return Letter::paginate(10)->toResourceCollection();
+        return Letter::get()->toResourceCollection();
     }
 
     /**

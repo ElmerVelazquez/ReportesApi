@@ -28,7 +28,7 @@ class StoreEquipmentRequest extends FormRequest
             'equipment_model_id' =>'required|strict_integer|exists:equipment_models,id',
             'serial' => 'required|strict_string|max:255|unique:equipment,serial',
             'equipment_status_id' => 'required|strict_integer|exists:equipment_statuses,id',
-            'comment' => 'strict_string|max:255',
+            'comment' => 'strict_string|nullable|max:255',
         ];
     }
 }

@@ -22,7 +22,14 @@ class Equipment extends Model
         'equipment_status_id',
         'comment',
     ];
-    protected $hidden = ['pivot'];
+    protected $hidden = [
+        'equipment_type_id',
+        'equipment_brand_id',
+        'equipment_model_id',
+        'equipment_status_id',
+        'pivot'
+    ];
+
     public function type()
     {
         return $this->belongsTo(EquipmentType::class, 'equipment_type_id');
@@ -42,5 +49,14 @@ class Equipment extends Model
     {
         return $this->hasMany(Register::class);
     }
+    public function brand()
+    {
+        return $this->belongsTo(EquipmentBrand::class, 'equipment_brand_id');
+    }
+    public function model()
+    {
+        return $this->belongsTo(EquipmentModel::class, 'equipment_model_id');
+    }
+
 
 }
